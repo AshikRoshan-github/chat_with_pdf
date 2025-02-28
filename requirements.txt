@@ -1,3 +1,4 @@
 streamlit
 toml
 google-generativeai
+google-genai
