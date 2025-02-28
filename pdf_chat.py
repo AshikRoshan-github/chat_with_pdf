@@ -3,15 +3,8 @@ import toml
 from google import genai
 from google.genai import types
 
-# Load configuration using Streamlit session state
-def load_config():
-    if "config" not in st.session_state:
-        with open("config.toml", "r") as config_file:
-            st.session_state.config = toml.load(config_file)
-    return st.session_state.config
-
-config = load_config()
-GEMINI_API_KEY = config["api"]["GEMINI_API_KEY"]
+# Load configuration using Streamlit's environment method
+GEMINI_API_KEY = st.secrets["api"]["GEMINI_API_KEY"]
 
 def generate_response(file_path, user_prompt):
     client = genai.Client(api_key=GEMINI_API_KEY)
